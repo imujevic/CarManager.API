@@ -1,4 +1,4 @@
-﻿namespace Contract;
+﻿namespace Contract.CarInformations;
 
 // DTO za prikaz podataka o vozilu
 public class CarDto

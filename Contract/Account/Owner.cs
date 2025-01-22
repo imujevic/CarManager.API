@@ -1,4 +1,4 @@
-﻿namespace Contract
+﻿namespace Contract.Account
 {
     // DTO za prikaz podataka o vlasniku
     public class OwnerDto
