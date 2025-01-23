@@ -2,7 +2,7 @@
 
 namespace Domain.Repositories;
 
-public interface ICategoryRepository : IRepositoryBase<Category>
+public interface ICarRepository : IRepositoryBase<Category>
 {
     Task<IEnumerable<Category>> GetAll(CancellationToken cancellationToken = default);
 

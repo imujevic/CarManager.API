@@ -4,7 +4,7 @@
     {
         IAccountRepository AccountRepository { get; }
         IProductRepository ProductRepository { get; }
-        ICategoryRepository CategoryRepository { get; }
+        ICarRepository CategoryRepository { get; }
         IUnitOfWork UnitOfWork { get; }
         IOrderRepository OrderRepository { get; }
         IOrderItemRepository OrderItemRepository { get; }
