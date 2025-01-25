@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Cors.Infrastructure;
+using Contract.CarInformations;
+using Core.Domain;
 
 namespace Services
 {
     public class CarService(IRepositoryManager repositoryManager) : ICarService
     {
-        public async Task<GeneralResponseDto> Create(CarCreateDto carDto, CancellationToken cancellationToken = default)
+        public async Task<GeneralResponseDto> Create(CreateCarDto carDto, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -51,7 +53,7 @@ namespace Services
             return car.Adapt<CarDto>();
         }
 
-        public async Task<GeneralResponseDto> Update(int carId, CarUpdateDto carDto, CancellationToken cancellationToken = default)
+        public async Task<GeneralResponseDto> Update(int carId, UpdateCarDto carDto, CancellationToken cancellationToken = default)
         {
             try
             {

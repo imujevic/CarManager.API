@@ -1,38 +1,32 @@
-﻿using Domain.Entities;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Persistence.Configurations;
-using Contract; // Proveri da li ti treba custom namespace.
-using Services.Abstractions;
-using Domain.Entities;
-using Domain.Repositories;
-
+﻿global using Domain.Entities;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Persistence.Configurations;
+using Core.Domain;
 
 namespace Persistence;
 
-public sealed class DataContext : IdentityDbContext<
+public sealed class DataContext(DbContextOptions options) : IdentityDbContext<
     Account,
     AccountRole,
     string,
-    IdentityUserClaim<string>,
-    AccountIdentityUserRole,
-    IdentityUserLogin<string>,
-    IdentityRoleClaim<string>,
-    IdentityUserToken<string>
->
+    IdentityUserClaim<string>, // TUserClaim
+    AccountIdentityUserRole, // TUserRole,
+    IdentityUserLogin<string>, // TUserLogin
+    IdentityRoleClaim<string>, // TRoleClaim
+    IdentityUserToken<string> // TUserToken
+>(options)
 {
-    public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // Mapiranje tabela za Identity
+        // Identity tables
         modelBuilder.Entity<Account>().ToTable("AspNetUsers");
         modelBuilder.Entity<AccountIdentityUserRole>().ToTable("AspNetUserRoles");
         modelBuilder.Entity<AccountRole>().ToTable("AspNetRoles");
-
         modelBuilder.Entity<AccountIdentityUserRole>()
             .HasOne(p => p.User)
             .WithMany(b => b.Roles)
@@ -43,19 +37,17 @@ public sealed class DataContext : IdentityDbContext<
             .WithMany(x => x.Roles)
             .HasForeignKey(p => p.RoleId);
 
-        // Primena konfiguracija
+        // Configurations
         modelBuilder.ApplyConfiguration(new RoleConfiguration());
         modelBuilder.ApplyConfiguration(new AccountConfiguration());
         modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
 
-        // Dodatne Fluent API konfiguracije po potrebi
     }
 
-    // DbSet-ovi za tvoje entitete
-    public DbSet<Owner> Owners { get; set; }
-    public DbSet<Car> Cars { get; set; }
-    public DbSet<ServiceRecord> ServiceRecords { get; set; }
-    public DbSet<Inspection> Inspections { get; set; }
-    public DbSet<Order> Orders { get; set; }
-    public DbSet<OrderItem> OrderItems { get; set; }
+    public DbSet<Car>? Cars { get; set; }
+    public DbSet<Owner>? Owners { get; set; }
+    public DbSet<ServiceRecord>? ServiceRecords { get; set; }
+    public DbSet<Inspection>? Inspections { get; set; }
+    public DbSet<Booking>? Bookings { get; set; }
+    public DbSet<ServiceCenter>? ServiceCenters { get; set; }
 }

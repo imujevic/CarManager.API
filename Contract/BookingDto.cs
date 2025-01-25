@@ -1,4 +1,10 @@
-﻿namespace Contract
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Contract
 {
     // DTO za prikaz rezervacije
     public class BookingDto
@@ -28,3 +34,4 @@
         public int ServiceCenterId { get; set; } // ID servisnog centra
     }
 }
+

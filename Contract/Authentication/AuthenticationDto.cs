@@ -1,4 +1,4 @@
-﻿namespace Contract.Authentification;
+﻿namespace Contract;
 
 public class AuthenticationDto
 {

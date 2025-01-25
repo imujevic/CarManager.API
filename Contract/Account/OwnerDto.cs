@@ -1,4 +1,10 @@
-﻿namespace Contract.Account
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Contract.Account
 {
     // DTO za prikaz podataka o vlasniku
     public class OwnerDto

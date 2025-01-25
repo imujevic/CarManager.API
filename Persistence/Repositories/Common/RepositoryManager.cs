@@ -1,9 +1,4 @@
 ﻿using Domain.Repositories;
-using Domain.Repositories.Billing;
-using Domain.Repositories.Common;
-using Domain.Repositories.Scheduling;
-using Persistence.Repositories.Billing;
-using Persistence.Repositories.Scheduling;
 
 namespace Persistence.Repositories
 {
@@ -11,31 +6,20 @@ namespace Persistence.Repositories
     {
         private readonly Lazy<IAccountRepository> _lazyAccountRepository = new(() => new AccountRepository(dbContext));
         private readonly Lazy<IUnitOfWork> _lazyUnitOfWork = new(() => new UnitOfWork(dbContext));
-        private readonly Lazy<IEmployeeRepository> _lazyEmployeeRepository = new(() => new EmployeeRepository(dbContext));
-        private readonly Lazy<IPatientRepository> _lazyPatientRepository = new(() => new PatientRepository(dbContext));
-        private readonly Lazy<ITreatmentRepository> _lazyTreatmentRepository = new(() => new TreatmentRepository(dbContext));
-        
-        // Repozitori za Billing
-        private readonly Lazy<IInvoiceRepository> _lazyInvoiceRepository = new(() => new InvoiceRepository(dbContext));
-        private readonly Lazy<IPaymentRepository> _lazyPaymentRepository = new(() => new PaymentRepository(dbContext));
-        
-        // Repozitori za Scheduling
-        private readonly Lazy<IAppointmentRepository> _lazyAppointmentRepository = new(() => new AppointmentRepository(dbContext));
+        private readonly Lazy<ICarRepository> _lazyCarRepository = new(() => new CarRepository(dbContext));
+        private readonly Lazy<IOwnerRepository> _lazyOwnerRepository = new(() => new OwnerRepository(dbContext));
+        private readonly Lazy<IServiceRecordRepository> _lazyServiceRecordRepository = new(() => new ServiceRecordRepository(dbContext));
+        private readonly Lazy<IInspectionRepository> _lazyInspectionRepository = new(() => new InspectionRepository(dbContext));
+        private readonly Lazy<IBookingRepository> _lazyBookingRepository = new(() => new BookingRepository(dbContext));
+        private readonly Lazy<IServiceCenterRepository> _lazyServiceCenterRepository = new(() => new ServiceCenterRepository(dbContext));
 
         public IAccountRepository AccountRepository => _lazyAccountRepository.Value;
         public IUnitOfWork UnitOfWork => _lazyUnitOfWork.Value;
-        public IEmployeeRepository EmployeeRepository => _lazyEmployeeRepository.Value;
-        public IPatientRepository Patientrepository => _lazyPatientRepository.Value;
-
-        public IPatientRepository PatientRepository => throw new NotImplementedException();
-
-        public ITreatmentRepository TreatmentRepository => _lazyTreatmentRepository.Value;
-
-        // Billing repozitoriji
-        public IInvoiceRepository InvoiceRepository => _lazyInvoiceRepository.Value;
-        public IPaymentRepository PaymentRepository => _lazyPaymentRepository.Value;
-
-        // Scheduling repozitoriji
-        public IAppointmentRepository AppointmentRepository => _lazyAppointmentRepository.Value;
+        public ICarRepository CarRepository => _lazyCarRepository.Value;
+        public IOwnerRepository OwnerRepository => _lazyOwnerRepository.Value;
+        public IServiceRecordRepository ServiceRecordRepository => _lazyServiceRecordRepository.Value;
+        public IInspectionRepository InspectionRepository => _lazyInspectionRepository.Value;
+        public IBookingRepository BookingRepository => _lazyBookingRepository.Value;
+        public IServiceCenterRepository ServiceCenterRepository => _lazyServiceCenterRepository.Value;
     }
 }

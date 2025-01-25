@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contract.Account;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Services
 {
     public class OwnerService(IRepositoryManager repositoryManager) : IOwnerService
     {
-        public async Task<GeneralResponseDto> Create(OwnerCreateDto ownerDto, CancellationToken cancellationToken = default)
+        public async Task<GeneralResponseDto> Create(CreateOwnerDto ownerDto, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -65,7 +66,7 @@ namespace Services
             return owner.Adapt<OwnerDto>();
         }
 
-        public async Task<GeneralResponseDto> Update(int ownerId, OwnerUpdateDto ownerDto, CancellationToken cancellationToken = default)
+        public async Task<GeneralResponseDto> Update(int ownerId, UpdateOwnerDto ownerDto, CancellationToken cancellationToken = default)
         {
             try
             {

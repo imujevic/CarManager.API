@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contract.CarInformations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Services
 {
     public class ServiceRecordService(IRepositoryManager repositoryManager) : IServiceRecordService
     {
-        public async Task<GeneralResponseDto> Create(ServiceRecordCreateDto serviceRecordDto, CancellationToken cancellationToken = default)
+        public async Task<GeneralResponseDto> Create(CreateServiceRecordDto serviceRecordDto, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -65,7 +66,7 @@ namespace Services
             return serviceRecord.Adapt<ServiceRecordDto>();
         }
 
-        public async Task<GeneralResponseDto> Update(int serviceRecordId, ServiceRecordUpdateDto serviceRecordDto, CancellationToken cancellationToken = default)
+        public async Task<GeneralResponseDto> Update(int serviceRecordId, UpdateServiceRecordDto serviceRecordDto, CancellationToken cancellationToken = default)
         {
             try
             {

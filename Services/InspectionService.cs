@@ -2,7 +2,7 @@
 {
     public class InspectionService(IRepositoryManager repositoryManager) : IInspectionService
     {
-        public async Task<GeneralResponseDto> Create(InspectionCreateDto inspectionDto, CancellationToken cancellationToken = default)
+        public async Task<GeneralResponseDto> Create(CreateInspectionDto inspectionDto, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -59,7 +59,7 @@
             return inspection.Adapt<InspectionDto>();
         }
 
-        public async Task<GeneralResponseDto> Update(int inspectionId, InspectionUpdateDto inspectionDto, CancellationToken cancellationToken = default)
+        public async Task<GeneralResponseDto> Update(int inspectionId, UpdateInspectionDto inspectionDto, CancellationToken cancellationToken = default)
         {
             try
             {

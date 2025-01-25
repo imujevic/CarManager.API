@@ -4,7 +4,7 @@ namespace Services
 {
     public class BookingService(IRepositoryManager repositoryManager) : IBookingService
     {
-        public async Task<GeneralResponseDto> Create(BookingCreateDto BookingDto, CancellationToken cancellationToken = default)
+        public async Task<GeneralResponseDto> Create(CreateBookingDto BookingDto, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace Services
             return Booking.Adapt<BookingDto>();
         }
 
-        public async Task<GeneralResponseDto> Update(int BookingId, BookingUpdateDto BookingDto, CancellationToken cancellationToken = default)
+        public async Task<GeneralResponseDto> Update(int BookingId, UpdateBookingDto BookingDto, CancellationToken cancellationToken = default)
         {
             try
             {

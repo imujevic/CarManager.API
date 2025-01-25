@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Contract.Authentification;
+namespace Contract;
 
 public class RegistrationDto
 {
@@ -8,17 +8,17 @@ public class RegistrationDto
     public string? LastName { get; set; } = null!;
     public string? Email { get; set; }
 
-    [Required(ErrorMessage = "Obavezno polje.")]
+    [Required(ErrorMessage = "Pflichtfeld")]
     [RegularExpression(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*",
-    ErrorMessage = "Lozinka mora imati najmanje 7 karaktera i sadržati barem jedno veliko slovo i jedan broj!")]
-    [StringLength(16, MinimumLength = 7, ErrorMessage = "Najmanje 7 karaktera.")]
+    ErrorMessage = "Das Passwort muss mindestens 7 Zeichen lang sein und mindestens einen Großbuchstaben und eine Zahl enthalten!")]
+    [StringLength(16, MinimumLength = 7, ErrorMessage = "Mindestens 7")]
     [DataType(DataType.Password)]
     public string Password { get; set; } = null!;
 
-    [Required(ErrorMessage = "Obavezno polje.")]
-    [Compare(nameof(Password), ErrorMessage = "Lozinke se ne poklapaju.")]
+    [Required(ErrorMessage = "Pflichtfeld")]
+    [Compare(nameof(Password), ErrorMessage = "Passwörter stimmen nicht überein")]
     public string ConfirmPassword { get; set; } = null!;
 
-    public string? PhoneNumber { get; set; } = null!;
+    public string? MobileNumber { get; set; } = null!;
     public string? Role { get; set; }
 }

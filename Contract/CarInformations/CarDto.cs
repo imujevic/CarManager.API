@@ -1,4 +1,10 @@
-﻿namespace Contract.CarInformations;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Contract.CarInformations;
 
 // DTO za prikaz podataka o vozilu
 public class CarDto
@@ -27,3 +33,4 @@ public class UpdateCarDto
     public int Year { get; set; } // Godina proizvodnje
     public int OwnerId { get; set; } // ID vlasnika automobila
 }
+
