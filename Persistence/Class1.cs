@@ -1,4 +1,4 @@
-﻿namespace Services
+﻿namespace Persistence
 {
     public class Class1
     {

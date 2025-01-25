@@ -3,10 +3,12 @@
     public interface IRepositoryManager
     {
         IAccountRepository AccountRepository { get; }
-        IProductRepository ProductRepository { get; }
-        ICarRepository CategoryRepository { get; }
+        ICarRepository CarRepository { get; }
+        IOwnerRepository OwnerRepository { get; }
+        IServiceRecordRepository ServiceRecordRepository { get; }
+        IInspectionRepository InspectionRepository { get; }
+        IBookingRepository BookingRepository { get; }
+        IServiceCenterRepository ServiceCenterRepository { get; }
         IUnitOfWork UnitOfWork { get; }
-        IOrderRepository OrderRepository { get; }
-        IOrderItemRepository OrderItemRepository { get; }
     }
 }
