@@ -5,6 +5,7 @@ global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Persistence.Configurations;
 using Core.Domain;
+using Domain.Entities.JointTables;
 
 namespace Persistence;
 
@@ -42,6 +43,19 @@ public sealed class DataContext(DbContextOptions options) : IdentityDbContext<
         modelBuilder.ApplyConfiguration(new AccountConfiguration());
         modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
 
+        // CarOwner relationship configuration (if needed)
+        modelBuilder.Entity<CarOwner>()
+            .HasKey(co => new { co.CarId, co.OwnerId }); // Composite key
+
+        modelBuilder.Entity<CarOwner>()
+            .HasOne(co => co.Car)
+            .WithMany(c => c.CarOwners)
+            .HasForeignKey(co => co.CarId);
+
+        modelBuilder.Entity<CarOwner>()
+            .HasOne(co => co.Owner)
+            .WithMany(o => o.CarOwners)
+            .HasForeignKey(co => co.OwnerId);
     }
 
     public DbSet<Car>? Cars { get; set; }
@@ -50,4 +64,5 @@ public sealed class DataContext(DbContextOptions options) : IdentityDbContext<
     public DbSet<Inspection>? Inspections { get; set; }
     public DbSet<Booking>? Bookings { get; set; }
     public DbSet<ServiceCenter>? ServiceCenters { get; set; }
+    public DbSet<CarOwner>? CarOwners { get; set; } // New DbSet for CarOwner
 }

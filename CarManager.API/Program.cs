@@ -1,6 +1,5 @@
 using Domain.Entities;
 using Domain.Repositories;
-using Domain.Repositories.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +28,7 @@ app.Run();
 
 void ConfigureServices(IServiceCollection services, IConfiguration configuration)
 {
-    services.AddControllers().AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
+    services.AddControllers();
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
 
@@ -44,8 +43,8 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
         opt.Password.RequireUppercase = true;
         opt.SignIn.RequireConfirmedEmail = true;
     })
-    .AddEntityFrameworkStores<DataContext>()
-    .AddDefaultTokenProviders();
+        .AddEntityFrameworkStores<DataContext>()
+        .AddDefaultTokenProviders();
 }
 
 void ConfigureDatabase(IServiceCollection services, IConfiguration configuration)
